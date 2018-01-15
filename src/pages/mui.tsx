@@ -5,7 +5,7 @@ import {
   AppBar,
   Button,
   Menu as MuiMenu,
-  MenuItem as MuiMenuItem,
+  MenuItem,
   Modal,
   ModalContent,
   ModalFooter,
@@ -79,7 +79,7 @@ export default class MUI extends React.Component<any, any> {
         <h3>AppBar/Toolbar/Button/Menu/MenuItem:</h3>
         <div>
           <span>On the top ↑</span>
-          {/* <AppBar id="AppBar">
+          <AppBar id="AppBar">
             <Toolbar id="Toolbar" style={{background: '#ccc'}}>
               <span>AppBar</span>
               <Button
@@ -96,15 +96,15 @@ export default class MUI extends React.Component<any, any> {
                 open={Boolean(anchorEl)}
                 onClose={() => this.closeMenu()}
               >
-                <MuiMenuItem id="MuiMenuItem1" onClick={() => this.closeMenu()}>Profile</MuiMenuItem>
-                <MuiMenuItem id="MuiMenuItem2" onClick={() => this.closeMenu()}>My account</MuiMenuItem>
-                <MuiMenuItem id="MuiMenuItem3" onClick={() => this.closeMenu()}>Logout</MuiMenuItem>
+                <MenuItem id="MuiMenuItem1" onClick={() => this.closeMenu()}>Profile</MenuItem>
+                <MenuItem id="MuiMenuItem2" onClick={() => this.closeMenu()}>My account</MenuItem>
+                <MenuItem id="MuiMenuItem3" onClick={() => this.closeMenu()}>Logout</MenuItem>
               </MuiMenu>
             </Toolbar>
-          </AppBar> */}
+          </AppBar>
         </div>
         <h3>Modal:</h3>
-        {/* <Button id="Button2"  onClick={() => this.setState({ showModal: true })}>Open Modal</Button> */}
+        <Button id="Button2"  onClick={() => this.setState({ showModal: true })}>Open Modal</Button>
         {showModal ? this.renderModal() : null}
       </div>
     )

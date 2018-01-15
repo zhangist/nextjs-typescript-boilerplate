@@ -9,6 +9,13 @@ const dev = (process.argv.indexOf('--dev') > -1)
 const app = nextjs({ dev, dir: './build' })
 const handle = app.getRequestHandler()
 
+// set process.env.NODE_ENV for some 3rd lib
+if (dev) {
+  process.env.NODE_ENV = 'development'
+} else {
+  process.env.NODE_ENV = 'production'
+}
+
 app.prepare().then(() => {
   const server = new Koa()
   const router = new Router()

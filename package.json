@@ -7,7 +7,8 @@
     "tsc": "tsc --watch --pretty",
     "dev": "node ./build/server.js --dev",
     "build": "next build ./build",
-    "start": "node ./build/server.js --prd"
+    "start": "node ./build/server.js --prd",
+    "export": "next export ./build"
   },
   "author": "",
   "license": "ISC",

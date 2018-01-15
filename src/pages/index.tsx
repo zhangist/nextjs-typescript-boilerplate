@@ -1,12 +1,18 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import Menu from '../components/app/Menu'
+
+const Pre = styled.pre`
+  background: #eee;
+  overflow: auto;
+`
 
 export default () => (
   <div>
     <h1>Index Page</h1>
     <Menu />
     <h3>Directory structure:</h3>
-    <pre style={{ background: '#eee', overflow: 'auto' }}>{`
+    <Pre>{`
       |-src
         |-actions            /* redux actions */
           \\-index.ts
@@ -40,6 +46,6 @@ export default () => (
       \\-README.md
       \\-tsconfig.json
       \\-tslint.json
-    `}</pre>
+    `}</Pre>
   </div>
 )
