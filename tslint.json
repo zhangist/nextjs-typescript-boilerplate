@@ -5,7 +5,8 @@
     ],
     "jsRules": {},
     "rules": {
-        "no-console": [true, "error"],
+        "interface-name": false,
+        "object-literal-sort-keys": false,
         "quotemark": [true, "single", "jsx-double"],
         "semicolon": [true, "never"]
     },

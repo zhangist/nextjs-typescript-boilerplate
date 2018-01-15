@@ -57,5 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 
+/.next
+/build
 /dist
 /package-lock.json

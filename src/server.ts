@@ -1,44 +1,36 @@
-import * as express from 'express'
+import * as Koa from 'koa'
 import * as Router from 'koa-router'
 import * as nextjs from 'next'
-import * as path from 'path'
-
-import routes from './routes'
+import * as logger from './lib/logger'
 import pages from './routes/pages'
 
-const port = parseInt(process.env.PORT || '3030', 10)
-const dev = process.env.NODE_ENV !== 'production'
-const app = nextjs({
-  dev,
-  dir: './dist',
-})
-const handler = pages.getRequestHandler(app)
+const port = parseInt(process.env.PORT || '3000', 10)
+const dev = (process.argv.indexOf('--dev') > -1)
+const app = nextjs({ dev, dir: './build' })
+const handle = app.getRequestHandler()
 
-app.prepare()
-.then(() => {
-  const server = express()
+app.prepare().then(() => {
+  const server = new Koa()
+  const router = new Router()
 
-  // router.use(pages.routes(), pages.allowedMethods())
-  // router.use(routes.routes(), routes.allowedMethods())
+  // nextjs get routes of pages
+  pages(app, router)
+  // nextjs handle
+  router.get('*', async (ctx) => {
+    await handle(ctx.req, ctx.res)
+    ctx.respond = false
+  })
+  // nextjs statusCode
+  server.use(async (ctx, next) => {
+    ctx.res.statusCode = 200
+    await next()
+  })
 
-  // router.get('/', async (ctx) => {
-  //   await app.render(ctx.req, ctx.res, '/index', ctx.query)
-  //   ctx.respond = false
-  // })
-  // router.get('/b', async (ctx) => {
-  //   await app.render(ctx.req, ctx.res, '/about', ctx.query)
-  //   ctx.respond = false
-  // })
+  // server api
+  server.use(router.routes())
+  server.use(router.allowedMethods())
 
-  // router.get('*', async (ctx) => {
-  //   await handle(ctx.req, ctx.res)
-  //   ctx.respond = false
-  // })
-
-  server.use(handler)
-
-  server.listen(port, (err: any) => {
-    if (err) { throw err }
-    console.log(`> Ready on http://localhost:${port}`)
+  server.listen(port, () => {
+    logger.print(`\r\nRunning on http://localhost:${port}\r\n`)
   })
 })
