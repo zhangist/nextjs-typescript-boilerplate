@@ -2,9 +2,7 @@ import MuiModal from 'material-ui/Modal'
 import withStyles from 'material-ui/styles/withStyles'
 import * as React from 'react'
 import styled from 'styled-components'
-import options from '../../options'
-
-const theme = options.theme
+import theme from '../../theme'
 
 /**
  * extend from Mui.Modal

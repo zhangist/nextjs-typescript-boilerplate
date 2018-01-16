@@ -1,9 +1,7 @@
 import MuiMenu, { MenuItem as MuiMenuItem } from 'material-ui/Menu'
 import withStyles from 'material-ui/styles/withStyles'
 import * as React from 'react'
-import options from '../../options'
-
-const theme = options.theme
+import theme from '../../theme'
 
 /**
  * extend from Mui.Menu

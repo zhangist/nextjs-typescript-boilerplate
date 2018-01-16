@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { findDOMNode } from 'react-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import theme from '../../theme'
 
 /**
@@ -16,9 +16,11 @@ interface Props {
   keyboardFocusedClassName?: string,
   onKeyboardFocus?: React.FocusEventHandler<any>,
   rootRef?: React.Ref<any>,
+  color?: string,
+  red?: boolean,
 }
 
-const ButtonWrapper = styled.button`
+const Root = styled.button`
   color: rgba(0, 0, 0, 0.87);
   padding: 8px 16px;
   min-width: 88px;
@@ -34,19 +36,24 @@ const ButtonWrapper = styled.button`
   outline: none;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
+  ${(props: Props) => props.red ? css`
+    background-color: red;
+  ` : ''}
 
   &:hover {
     text-decoration: none;
     background-color: rgba(0, 0, 0, 0.16);
   }
 `
-const LinkWrapper = ButtonWrapper.withComponent('a')
+const Red = css`
+  background-color: red;
+`
 
 const Label = styled.span`
-width: 100%;
-display: inherit;
-align-items: inherit;
-justify-content: inherit;
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
 `
 
 class Button extends React.Component<Props
@@ -56,6 +63,8 @@ class Button extends React.Component<Props
   public button: null|Element
 
   public state = {
+    red: false,
+    color: 'green',
     keyboardFocused: false,
   }
 
@@ -81,27 +90,30 @@ class Button extends React.Component<Props
 
   public render() {
     const {
+      className,
       centerRipple,
       children,
       component,
       disableRipple,
       disabled,
+      color,
+      red,
       type,
       ...other,
     } = this.props
 
     const buttonProps: any = {}
 
-    let Wrapper: any = ButtonWrapper
+    let Wrapper: any = Root
 
     if (!component) {
       if (other.href) {
-        Wrapper = LinkWrapper
+        Wrapper = Root.withComponent('a')
       }
     }
 
     if (component === 'button') {
-      Wrapper = ButtonWrapper
+      Wrapper = Root.withComponent('button')
       buttonProps.type = type || 'button'
     }
 
@@ -111,15 +123,19 @@ class Button extends React.Component<Props
     }
 
     return (
-      <Wrapper
+      <Root
+        className={className}
         onTouchStart={this.func}
+        onMouseEnter={() => this.setState({ red: true })}
+        onMouseLeave={() => this.setState({ red: false })}
+        red={red}
         {...other}
       >
         <Label>{children}</Label>
         {!disableRipple && !disabled ? (
           <span>123</span>
         ) : null}
-      </Wrapper>
+      </Root>
     )
   }
 }

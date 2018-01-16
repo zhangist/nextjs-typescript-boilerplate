@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as TransitionGroup from 'react-transition-group/TransitionGroup'
+import Ripple from './Ripple'
 
 const DURATION = 550
 export const DELAY_RIPPLE = 80

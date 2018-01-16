@@ -24,7 +24,8 @@
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.4.0"
+    "styled-components": "^2.4.0",
+    "styled-jss": "^2.1.2"
   },
   "devDependencies": {
     "@types/koa": "^2.0.43",

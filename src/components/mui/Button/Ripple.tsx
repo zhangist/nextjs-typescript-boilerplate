@@ -1,9 +1,17 @@
 import * as React from 'react'
 import Transition from 'react-transition-group/Transition'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
-const Ripple = styled.span`
-  
+const muiRippleEnter = keyframes`
+  from {
+    transform: 'scale(0)';
+  }
+  to {
+    transform: 'scale(1)';
+  }
+`
+const Wrapper = styled.span`
+  opacity: 1;
 `
 
 class Ripple extends React.Component<any, any> {
