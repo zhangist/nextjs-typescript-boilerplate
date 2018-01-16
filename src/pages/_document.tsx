@@ -1,7 +1,15 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import * as React from 'react'
+import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
+  public static getInitialProps({ renderPage }: any) {
+    // styled-components Server-side rendering
+    const sheet = new ServerStyleSheet()
+    const page = renderPage((App: any) => (props: any) => sheet.collectStyles(<App {...props} />))
+    const styleTags = sheet.getStyleElement()
+    return { ...page, styleTags }
+  }
   public render() {
     const viewportContent = 'width=device-width,height=device-height,user-scalable=no,'
       + 'initial-scale=1,minimum-scale=1,maximum-scale=1'
@@ -13,9 +21,9 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="viewport" content={viewportContent} />
           <title>Orchestra</title>
+          {this.props.styleTags}
         </Head>
         <body>
-          {this.props.customValue}
           <Main />
           <NextScript />
         </body>

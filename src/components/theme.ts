@@ -41,6 +41,4 @@ theme.modal.header.height = '32px'
 theme.modal.footer = theme.modal.footer || {}
 theme.modal.footer.height = '32px'
 
-export default {
-  theme,
-}
+export default theme

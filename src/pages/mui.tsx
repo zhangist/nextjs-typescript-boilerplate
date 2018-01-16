@@ -1,10 +1,13 @@
-import * as MuiButton from 'material-ui'
+import {
+  AppBar as MuiAppBar,
+  Button as MuiButton,
+} from 'material-ui'
 import * as React from 'react'
-import Menu from '../components/app/Menu'
+import AppMenu from '../components/app/Menu'
 import {
   AppBar,
   Button,
-  Menu as MuiMenu,
+  Menu,
   MenuItem,
   Modal,
   ModalContent,
@@ -44,8 +47,6 @@ export default class MUI extends React.Component<any, any> {
         <ModalHeader id="ModalHeader">
           <div>
             <Button
-              id="ModalHeaderButton"
-              color="inherit"
               onClick={() => this.setState({ showModal: false })}
             >
               Cancel
@@ -74,23 +75,22 @@ export default class MUI extends React.Component<any, any> {
     return (
       <div style={{ paddingTop: '30px' }}>
         <h1>MUI Page</h1>
-        <Menu />
+        <AppMenu />
         <h3>Hint: These are just some custom examples, and more implementations depend on your creativity.</h3>
         <h3>AppBar/Toolbar/Button/Menu/MenuItem:</h3>
         <div>
           <span>On the top ↑</span>
-          <AppBar id="AppBar">
-            <Toolbar id="Toolbar" style={{background: '#ccc'}}>
+          <AppBar position="absolute">
+            <Toolbar style={{background: '#ccc'}}>
               <span>AppBar</span>
-              <Button
-                id="Button1"
+              <MuiButton
                 aria-owns={anchorEl ? 'menu-demo' : null}
                 aria-haspopup="true"
                 onClick={(e: any) => this.openMenu(e)}
               >
                 Open Menu
-              </Button>
-              <MuiMenu
+              </MuiButton>
+              <Menu
                 id="menu-demo"
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
@@ -99,12 +99,12 @@ export default class MUI extends React.Component<any, any> {
                 <MenuItem id="MuiMenuItem1" onClick={() => this.closeMenu()}>Profile</MenuItem>
                 <MenuItem id="MuiMenuItem2" onClick={() => this.closeMenu()}>My account</MenuItem>
                 <MenuItem id="MuiMenuItem3" onClick={() => this.closeMenu()}>Logout</MenuItem>
-              </MuiMenu>
+              </Menu>
             </Toolbar>
           </AppBar>
         </div>
         <h3>Modal:</h3>
-        <Button id="Button2"  onClick={() => this.setState({ showModal: true })}>Open Modal</Button>
+        <Button onClick={() => this.setState({ showModal: true })}>Open Modal</Button>
         {showModal ? this.renderModal() : null}
       </div>
     )

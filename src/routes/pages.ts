@@ -16,16 +16,4 @@ export default (app: nextjs.Server, router: Router) => {
       ctx.respond = false
     })
   }
-  // router.get('/', async (ctx) => {
-  //   await app.render(ctx.req, ctx.res, '/index', ctx.query)
-  //   ctx.respond = false
-  // })
-  // router.get('/redux', async (ctx) => {
-  //   await app.render(ctx.req, ctx.res, '/redux', ctx.query)
-  //   ctx.respond = false
-  // })
-  // router.get('/about', async (ctx) => {
-  //   await app.render(ctx.req, ctx.res, '/about', ctx.query)
-  //   ctx.respond = false
-  // })
 }
