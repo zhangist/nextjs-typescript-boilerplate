@@ -8,6 +8,7 @@ import theme from '../../theme'
  */
 
 interface Props {
+  classes: any,
   mini?: boolean,
   centerRipple?: boolean,
   component?: React.ReactType<Button>,

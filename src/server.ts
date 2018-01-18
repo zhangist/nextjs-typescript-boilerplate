@@ -17,6 +17,7 @@ const app = nextjs({ dev: DEV, dir: './build' })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
+
   const server = new Koa()
   const router = new Router()
 
@@ -33,6 +34,15 @@ app.prepare().then(() => {
   server.use(async (ctx, next) => {
     ctx.res.statusCode = 200
     await next()
+  })
+
+  hook({
+    extensions: '.styl',
+    processCss: (data: any, filename: any) => {
+      return stylus(data)
+        .set('filename', filename)
+        .render()
+    },
   })
 
   server.use(router.routes())
