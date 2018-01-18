@@ -2,9 +2,7 @@ import MuiIcon from 'material-ui/Icon'
 import withStyles from 'material-ui/styles/withStyles'
 import * as React from 'react'
 import styled, { StyledFunction } from 'styled-components'
-import options from '../../options'
-
-const theme = options.theme
+import theme from '../../theme'
 
 /**
  * extend from Mui.Icon

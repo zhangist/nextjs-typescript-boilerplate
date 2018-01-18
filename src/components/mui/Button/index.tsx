@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { findDOMNode } from 'react-dom'
+import injectSheet from 'react-jss'
 import styled from 'styled-components'
 import theme from '../../theme'
 
@@ -8,6 +9,7 @@ import theme from '../../theme'
  */
 
 interface Props {
+  classes: any,
   mini?: boolean,
   centerRipple?: boolean,
   component?: React.ReactType<Button>,
@@ -16,6 +18,18 @@ interface Props {
   keyboardFocusedClassName?: string,
   onKeyboardFocus?: React.FocusEventHandler<any>,
   rootRef?: React.Ref<any>,
+}
+
+const styles = {
+  root: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    padding: '8px 16px',
+    borderRadius: 0,
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    cursor: 'pointer',
+  },
 }
 
 const ButtonWrapper = styled.button`
@@ -81,6 +95,7 @@ class Button extends React.Component<Props
 
   public render() {
     const {
+      classes,
       centerRipple,
       children,
       component,
@@ -92,16 +107,16 @@ class Button extends React.Component<Props
 
     const buttonProps: any = {}
 
-    let Wrapper: any = ButtonWrapper
+    let Wrapper: string = 'button'
 
     if (!component) {
       if (other.href) {
-        Wrapper = LinkWrapper
+        Wrapper = 'a'
       }
     }
 
     if (component === 'button') {
-      Wrapper = ButtonWrapper
+      Wrapper = 'button'
       buttonProps.type = type || 'button'
     }
 
@@ -112,6 +127,7 @@ class Button extends React.Component<Props
 
     return (
       <Wrapper
+        className={classes.root}
         onTouchStart={this.func}
         {...other}
       >
@@ -124,4 +140,4 @@ class Button extends React.Component<Props
   }
 }
 
-export default Button
+export default injectSheet(styles)(Button)
