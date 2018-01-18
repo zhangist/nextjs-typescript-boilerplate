@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
     "material-ui": "^1.0.0-beta.28",
@@ -25,7 +26,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.4.0",
-    "styled-jss": "^2.1.2"
+    "styled-jss": "^2.1.2",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "@types/koa": "^2.0.43",

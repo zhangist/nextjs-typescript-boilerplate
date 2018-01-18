@@ -16,11 +16,19 @@ export default class MUI extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <h1>MUI Page</h1>
+        <h1>SSR Page</h1>
         <AppMenu />
-        <h3>Hint: These are just some custom examples, and more implementations depend on your creativity.</h3>
-        <h3>Modal:</h3>
+        <h3>
+          For the initial page load, getInitialProps will execute on the server only.
+          getInitialProps will only be executed on the client when navigating to a
+          different route via the Link component or using the routing APIs.
+        </h3>
+        <h3>The SSR Content:</h3>
         <div>{this.props.text}</div>
+        <br />
+        <div style={{ color: '#666' }}>
+          👆 fetch from server api: /api/site/hello
+        </div>
       </div>
     )
   }

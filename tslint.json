@@ -6,6 +6,7 @@
     "jsRules": {},
     "rules": {
         "interface-name": false,
+        "no-console": false,
         "object-literal-sort-keys": false,
         "quotemark": [true, "single", "jsx-double"],
         "semicolon": [true, "never"]

@@ -6,6 +6,7 @@ const pages = [
   ['/redux-write', '/reduxWrite'],
   ['/redux-read', '/reduxReact'],
   ['/mui', '/mui'],
+  ['/ssr', '/ssr'],
   ['/about', '/about'],
 ]
 

@@ -1,21 +1,19 @@
+import 'isomorphic-fetch'
 import * as Koa from 'koa'
 import * as Router from 'koa-router'
 import * as nextjs from 'next'
-import * as logger from './lib/logger'
 import routes from './routes'
 import pages from './routes/pages'
 
-const port = parseInt(process.env.PORT || '3000', 10)
-const dev = (process.argv.indexOf('--dev') > -1)
+const PORT = parseInt(process.env.PORT || '3000', 10)
+const DEV = (process.argv.indexOf('--dev') > -1)
 
 // set process.env.NODE_ENV for some 3rd lib
-if (dev) {
-  process.env.NODE_ENV = 'development'
-} else {
-  process.env.NODE_ENV = 'production'
-}
+process.env.NODE_ENV = DEV
+  ? 'development'
+  : 'production'
 
-const app = nextjs({ dev, dir: './build' })
+const app = nextjs({ dev: DEV, dir: './build' })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
@@ -40,7 +38,7 @@ app.prepare().then(() => {
   server.use(router.routes())
   server.use(router.allowedMethods())
 
-  server.listen(port, () => {
-    logger.print(`\r\nRunning on http://localhost:${port}\r\n`)
+  server.listen(PORT, () => {
+    console.log(`\r\nRunning on http://localhost:${PORT}\r\n`)
   })
 })

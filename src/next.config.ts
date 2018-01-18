@@ -1,11 +1,11 @@
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
-const analyze = (process.argv.indexOf('--analyze') > -1)
+const ANALYZE = (process.argv.indexOf('--analyze') > -1)
 
 export default {
   distDir: '../dist',
   webpack: (config: any) => {
-    if (analyze) {
+    if (ANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({
         analyzerMode: 'server',
         analyzerPort: 8888,
@@ -20,6 +20,7 @@ export default {
       '/redux-write': { page: '/reduxWrite' },
       '/redux-read': { page: '/reduxRead' },
       '/mui': { page: '/mui' },
+      '/ssr': { page: '/ssr' },
       '/about': { page: '/about' },
     }
   },
