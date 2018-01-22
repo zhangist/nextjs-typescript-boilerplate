@@ -36,15 +36,6 @@ app.prepare().then(() => {
     await next()
   })
 
-  hook({
-    extensions: '.styl',
-    processCss: (data: any, filename: any) => {
-      return stylus(data)
-        .set('filename', filename)
-        .render()
-    },
-  })
-
   server.use(router.routes())
   server.use(router.allowedMethods())
 

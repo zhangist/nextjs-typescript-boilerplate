@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="viewport" content={viewportContent} />
           <title>Orchestra</title>
-          <link rel="stylesheet" href="./assets/app.css" />
+          <link rel="stylesheet" href="http://localhost:8001/common/css/mui.css" />
           {this.props.styleTags}
         </Head>
         <body>

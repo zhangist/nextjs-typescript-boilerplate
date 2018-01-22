@@ -1,14 +1,12 @@
+import * as classnames from 'classnames'
 import * as React from 'react'
 import { findDOMNode } from 'react-dom'
-import styled, { css } from 'styled-components'
-import theme from '../../theme'
 
 /**
  * mui Button
  */
 
 interface Props {
-  classes: any,
   mini?: boolean,
   centerRipple?: boolean,
   component?: React.ReactType<Button>,
@@ -18,44 +16,7 @@ interface Props {
   onKeyboardFocus?: React.FocusEventHandler<any>,
   rootRef?: React.Ref<any>,
   color?: string,
-  red?: boolean,
 }
-
-const Root = styled.button`
-  color: rgba(0, 0, 0, 0.87);
-  padding: 8px 16px;
-  min-width: 88px;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  min-height: 36px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  line-height: 1.4em;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 500;
-  border-radius: 0;
-  border: none;
-  outline: none;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-  ${(props: Props) => props.red ? css`
-    background-color: red;
-  ` : ''}
-
-  &:hover {
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.16);
-  }
-`
-const Red = css`
-  background-color: red;
-`
-
-const Label = styled.span`
-  width: 100%;
-  display: inherit;
-  align-items: inherit;
-  justify-content: inherit;
-`
 
 class Button extends React.Component<Props
   & React.AnchorHTMLAttributes<HTMLElement>
@@ -98,23 +59,22 @@ class Button extends React.Component<Props
       disableRipple,
       disabled,
       color,
-      red,
       type,
       ...other,
     } = this.props
 
     const buttonProps: any = {}
 
-    let Wrapper: any = Root
+    let Root: string = 'button'
 
     if (!component) {
       if (other.href) {
-        Wrapper = Root.withComponent('a')
+        Root = 'a'
       }
     }
 
     if (component === 'button') {
-      Wrapper = Root.withComponent('button')
+      Root = 'button'
       buttonProps.type = type || 'button'
     }
 
@@ -123,16 +83,20 @@ class Button extends React.Component<Props
       buttonProps.disabled = disabled
     }
 
+    const rootClassName = classnames('Mui_Button-root', {
+      'Mui_Button-root-red': this.state.red,
+    })
+    const labelClassName = classnames('Mui_Button-label')
+
     return (
       <Root
-        className={className}
+        className={rootClassName}
         onTouchStart={this.func}
         onMouseEnter={() => this.setState({ red: true })}
         onMouseLeave={() => this.setState({ red: false })}
-        red={red}
         {...other}
       >
-        <Label>{children}</Label>
+        <span className={labelClassName}>{children}</span>
         {!disableRipple && !disabled ? (
           <span>123</span>
         ) : null}
