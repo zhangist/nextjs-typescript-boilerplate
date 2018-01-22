@@ -1,4 +1,4 @@
-import * as classnames from 'classnames'
+import * as classNames from 'classnames'
 import * as React from 'react'
 import { findDOMNode } from 'react-dom'
 
@@ -83,10 +83,10 @@ class Button extends React.Component<Props
       buttonProps.disabled = disabled
     }
 
-    const rootClassName = classnames('Mui_Button-root', {
+    const rootClassName = classNames('Mui_Button-root', {
       'Mui_Button-root-red': this.state.red,
     })
-    const labelClassName = classnames('Mui_Button-label')
+    const labelClassName = classNames('Mui_Button-label')
 
     return (
       <Root
